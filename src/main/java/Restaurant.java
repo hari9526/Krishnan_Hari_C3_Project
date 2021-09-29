@@ -64,8 +64,19 @@ public class Restaurant {
     }
     
     //Returns total amount for food items selected
-    //To be implemented
     public int orderTotal(List<String> itemsSelected){
+        int sum = 0;
+        for(String itemSelected : itemsSelected){
+            sum = sum + findItemPrice(itemSelected);
+        }
+        return sum;
+    }
+
+    private int findItemPrice(String itemSelected) {
+        for(Item item: menu) {
+            if(item.getName().equals(itemSelected))
+                return item.getPrice();
+        }
         return 0;
     }
 
