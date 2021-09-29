@@ -6,8 +6,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -24,7 +29,6 @@ class RestaurantTest {
         restaurant.addToMenu("Vegetable lasagne", 269);
 
     }
-
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     //-------FOR THE 2 TESTS BELOW, YOU MAY USE THE CONCEPT OF MOCKING, IF YOU RUN INTO ANY TROUBLE
     @Test
@@ -70,4 +74,17 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>ORDER TOTAL<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void order_total_should_return_the_total_amount_for_food_items_selected(){
+        List<String> foodItemsSelected = new ArrayList<String>();
+        foodItemsSelected.add("Sweet corn soup");
+        foodItemsSelected.add("Vegetable lasagne");
+
+        int orderTotalReturned = restaurant.orderTotal(foodItemsSelected);
+        int orderTotalExpected = 119 + 269;
+        assertThat(orderTotalReturned, equalTo(orderTotalExpected));
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<ORDER TOTAL>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }

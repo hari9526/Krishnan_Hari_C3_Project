@@ -62,5 +62,11 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+    
+    //Returns total amount for food items selected
+    //To be implemented
+    public int orderTotal(List<String> itemsSelected){
+        return 0;
+    }
 
 }
